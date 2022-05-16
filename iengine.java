@@ -12,6 +12,8 @@ public class iengine
 			System.exit(1);
 		}
 
+		solveMethods.add(new TruthTable());
+
 		String methodName = args[0];
 		String fileName = args[1];
 		
@@ -92,7 +94,7 @@ public class iengine
 
 			String fourthLine = buffReader.readLine();
 			
-			problem.ask = fourthLine;
+			problem.query = fourthLine;
 
 
 			buffReader.close();

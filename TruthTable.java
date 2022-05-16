@@ -2,13 +2,25 @@ import java.util.LinkedList;
 
 public class TruthTable extends SolveMethod
 {
-    public Solution Solve(KnowledgeBase KB, Sentence Query)
+
+
+    public Solution Solve(Problem inputProblem)
     {
         name = "TT";
-        
-        LinkedList<String> = new LinkedList<String>();
+        LinkedList<String> symbols = new LinkedList<String>();
+
+        while(!symbols.isEmpty())
+        {
+
+        }
+        if(true)
+        {
+
+        }
 
         
+
+
 
 
 
