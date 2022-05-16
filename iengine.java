@@ -62,7 +62,7 @@ public class iengine
 			Problem problem = new Problem();
 
 			String firstLine = buffReader.readLine();
-			if(firstLine != "TELL")
+			if(!(firstLine.compareTo("TELL") == 0))
 			{
 				System.out.println("The first line of the input file should be \"TELL\".");
 				System.exit(1);
@@ -84,7 +84,7 @@ public class iengine
 			problem.knowledgeBase = KB;
 
 			String thirdLine = buffReader.readLine();
-			if(thirdLine != "TELL")
+			if(!(thirdLine.compareTo("ASK") == 0))
 			{
 				System.out.println("The third line of the input file should be \"ASK\".");
 				System.exit(1);
