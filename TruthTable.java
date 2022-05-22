@@ -2,11 +2,15 @@ import java.util.LinkedList;
 
 public class TruthTable extends SolveMethod
 {
+    TruthTable()
+    {
+        name = "TT";
+        
+    }
 
 
     public Solution Solve(Problem inputProblem)
     {
-        name = "TT";
         LinkedList<String> symbols = new LinkedList<String>();
 
         while(!symbols.isEmpty())

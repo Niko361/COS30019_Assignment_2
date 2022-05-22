@@ -7,17 +7,19 @@ public class iengine
 
 	public static void main(String[] args) 
 	{
+		InitSolveMethods();
+		
 		if (args.length < 2) {
 			System.out.println("Usage: iengine <method> <filename>");
 			System.exit(1);
 		}
 
-		solveMethods.add(new TruthTable());
-
 		String methodName = args[0];
 		String fileName = args[1];
 		
 		Problem inputProblem = readProblemFile(fileName);
+
+
 
 		SolveMethod thisMethod = null;
 
@@ -48,9 +50,9 @@ public class iengine
 
 	}
 
-	public static void InitMethods()
+	public static void InitSolveMethods()
 	{
-	//	solveMethods.add(new TTSearch());
+		solveMethods.add(new TruthTable());
 	}
 
 	private static Problem readProblemFile(String fileName) 
@@ -70,19 +72,10 @@ public class iengine
 				System.exit(1);
 			}
 
+			//Takes the second line of the input file, inputs it into a knowledge base, and adds said knowledge base to the problem.
 			String secondLine = buffReader.readLine();
-
-			// split the second line of the input file at semi-colons and strip spaces
-			String[] sentenceStrings = secondLine.replaceAll(" ", "").split(";");
-
 			KnowledgeBase KB = new KnowledgeBase();
-			Sentence tempSentence = new Sentence();
-			
-			for(String s : sentenceStrings)
-			{
-				tempSentence.AddSentence(s);
-				KB.AddSentence(tempSentence);
-			}
+			KB.AddKB(secondLine);
 			problem.knowledgeBase = KB;
 
 			String thirdLine = buffReader.readLine();
