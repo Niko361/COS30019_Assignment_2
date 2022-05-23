@@ -43,7 +43,7 @@ public class iengine
 			System.exit(1);
 		}
 
-		Solution solution = thisMethod.Solve(inputProblem);
+		String solution = thisMethod.Solve(inputProblem);
 
 		System.out.println(solution);
 
@@ -53,6 +53,7 @@ public class iengine
 	public static void InitSolveMethods()
 	{
 		solveMethods.add(new TruthTable());
+		solveMethods.add(new ForwardChaining());
 	}
 
 	private static Problem readProblemFile(String fileName) 

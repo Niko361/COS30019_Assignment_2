@@ -9,7 +9,7 @@ public class TruthTable extends SolveMethod
     }
 
 
-    public Solution Solve(Problem inputProblem)
+    public String Solve(Problem inputProblem)
     {
         LinkedList<String> symbols = new LinkedList<String>();
 
@@ -35,7 +35,7 @@ public class TruthTable extends SolveMethod
 
 
 
-        Solution sol = new Solution();
+        String sol = new String();
         return sol;
     }
 }

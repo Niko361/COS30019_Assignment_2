@@ -34,6 +34,7 @@ public class KnowledgeBase
             String[] tempsymbols = sentence.replace("~", "").split("(=>)|(&)|(\\()|(\\))|(<=>)|(\\|\\|)");
             for(String symbol : tempsymbols)
             {
+                // Necessary for eliminating empty strings found between two or more brackets.
                 if(symbol != "")
                 {
                     boolean dupe = false;
