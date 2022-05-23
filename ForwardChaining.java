@@ -12,7 +12,8 @@ public class ForwardChaining extends SolveMethod
     //This is the table of symbols that have been inferred
     HashMap<String, Boolean> inferred = new HashMap<String, Boolean>();
 
-
+    //Using a String to add symbols onto as they are infered to maintain the order in which they were infered.
+    String inferredString = new String();
     
     ForwardChaining()
     {
@@ -38,20 +39,14 @@ public class ForwardChaining extends SolveMethod
             //checks if the solution has been found
             if (p.compareTo(inputProblem.query) == 0)
             {
-                String solution = "Yes: ";
-                for (String s : inferred.keySet())
-                {
-                    if (inferred.get(s))
-                    {
-                        solution += s + ", ";
-                    }
-                }
+                String solution = "Yes: " + inferredString + p;
                 return solution;
             }
 
             if(!inferred.get(p))
             {
                 inferred.replace(p, true);
+                inferredString += p + ", ";
 
                 for (String sentence : inputProblem.knowledgeBase.sentences) 
                 {
@@ -104,13 +99,14 @@ public class ForwardChaining extends SolveMethod
         {
             String[] hornBodyHead =  sentence.split("(=>)");
             //the length will only be one if the sentence is a statement is a fact.
-            if(hornBodyHead.length == 0)
+            if(hornBodyHead.length == 1)
             {
                 queue.add(sentence);
             }
         }
     }
 
+    //All symbols are initially not inferred.
     private void InitialiseInferred(Problem prob)
     {
         for (String s : prob.knowledgeBase.symbols)
@@ -119,6 +115,7 @@ public class ForwardChaining extends SolveMethod
         }
     }
 
+    //pops the first symbol off the queue.
     private String PopQueue()
     {
         String popped = queue.getFirst();
