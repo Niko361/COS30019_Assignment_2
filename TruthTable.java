@@ -18,7 +18,7 @@ public class TruthTable extends SolveMethod
 
         }
         if(true)
-        {
+        { 
 
         }
 

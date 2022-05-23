@@ -54,6 +54,7 @@ public class iengine
 	{
 		solveMethods.add(new TruthTable());
 		solveMethods.add(new ForwardChaining());
+		solveMethods.add(new BackwardChaining());
 	}
 
 	private static Problem readProblemFile(String fileName) 

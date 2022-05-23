@@ -115,7 +115,7 @@ public class ForwardChaining extends SolveMethod
         }
     }
 
-    //pops the first symbol off the queue.
+    //pops the first symbol off the
     private String PopQueue()
     {
         String popped = queue.getFirst();
