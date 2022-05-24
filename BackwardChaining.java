@@ -33,39 +33,58 @@ public class BackwardChaining extends SolveMethod
         //puts all symbols initially known to be true in the queue.
         InitialiseQueue(inputProblem);
 
+         //checks if the query has already been given as a fact.
+         if (given.get(inputProblem.query))
+         {
+             String solution = "Yes: ";
+             for(String s : provenInOppositeOrder)
+             {
+                 solution += s + ", ";
+             }
+             solution += inputProblem.query;
+             return solution;
+         }
+
+
         while(!queue.isEmpty())
         {
             String p = PopQueue();
 
-            //checks if the solution has been found
-            if ((count.get(p) == 0) && queue.isEmpty())
-            {
-                String solution = "Yes: ";
-                for(String s : provenInOppositeOrder)
-                {
-                    solution += s + ", ";
-                }
-                solution += inputProblem.query;
-                return solution;
-            }
+           
+            ArrayList<ArrayList<String>> premises = GetPremises(p, inputProblem);
 
-            ArrayList<String> Premises = GetPremises(p, inputProblem);
-
-            for(String premise: Premises)
+            for(ArrayList<String> premise: premises)
             {
-                Boolean dupe = false;
-                for(String s : queue)
+                Boolean premisesTrue = true;
+                for(String premiseSymbol: premise)
                 {
-                    
-                    if(s.compareTo(premise) == 0)
+                    Boolean dupe = false;
+                    for(String s : queue)
                     {
-                        dupe = true;
+                        if(s.compareTo(premiseSymbol) == 0)
+                        {
+                            dupe = true;
+                        }
+                    }
+                    if(!dupe)
+                    {
+                        queue.add(premiseSymbol);
+                        provenInOppositeOrder.addFirst(premiseSymbol);
+                    }
+                    if(!given.get(premiseSymbol) || (count.get(premiseSymbol) == -1))
+                    {
+                        premisesTrue = false;
                     }
                 }
-                if(!dupe)
+                if(premisesTrue)
                 {
-                    queue.add(premise);
-                    provenInOppositeOrder.addFirst(premise);
+                    String solution = "Yes: ";
+                    for(String s : provenInOppositeOrder)
+                    {
+                        solution += s + ", ";
+                    }
+                    solution += inputProblem.query;
+                    return solution;
                 }
             }
 /*
@@ -87,9 +106,9 @@ public class BackwardChaining extends SolveMethod
     }
 
     //returns the premises/bodies that must be true in order for a symbol to also be true.
-    private ArrayList<String> GetPremises(String head, Problem prob)
+    private ArrayList<ArrayList<String>> GetPremises(String head, Problem prob)
     {
-        ArrayList<String> result = new ArrayList<>();
+        ArrayList<ArrayList<String>> results = new ArrayList<ArrayList<String>>();
 
         for (String sentence : prob.knowledgeBase.sentences)
         {            
@@ -99,15 +118,17 @@ public class BackwardChaining extends SolveMethod
                 String[] hornBodySymbols = hornBodyHead[0].split("(&)");
                 if(head.compareTo(hornBodyHead[1]) == 0)
                 {
+                    ArrayList<String> result = new ArrayList<String>();
                     for(String s : hornBodySymbols)
                     {
                         result.add(s);
                     }
+                    results.add(result);
                 }
             }
         }
 
-        return result;
+        return results;
     }
 
 
@@ -116,7 +137,7 @@ public class BackwardChaining extends SolveMethod
     {
         for (String sym : prob.knowledgeBase.symbols)
         {
-            ArrayList<String> premises = GetPremises(sym, prob);
+            ArrayList<ArrayList<String>> premises = GetPremises(sym, prob);
             int num = premises.size();            
             if((premises.size() == 0) && (!given.get(sym)))
             {
@@ -154,8 +175,8 @@ public class BackwardChaining extends SolveMethod
     //pops the first symbol off the queue.
     private String PopQueue()
     {
-        String popped = queue.getFirst();
-        queue.removeFirst();
+        String popped = queue.getLast();
+        queue.removeLast();
         return popped;
     }
 }
