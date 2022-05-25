@@ -24,7 +24,7 @@ public class BackwardChaining extends SolveMethod
         LinkedList<String> startingPath = new LinkedList<String>();
         startingPath.add(inputProblem.query);
         
-        if(BC_AND_OR(inputProblem.knowledgeBase.sentences, inputProblem.query, startingPath) != null)
+        if(BC_AND_OR(inputProblem.knowledgeBase.sentences, startingPath))
         {
             String returnLine = "Yes: ";
             for(int i = 0; i < solution.size()-1; i++)
@@ -41,7 +41,7 @@ public class BackwardChaining extends SolveMethod
     }
 
 
-    private LinkedList<String> BC_AND_OR(ArrayList<String> KB, String query, LinkedList<String> path)
+    private Boolean BC_AND_OR(ArrayList<String> KB, LinkedList<String> path)
     {
         String currentSymbol = path.getFirst();
         solution.addFirst(currentSymbol);
@@ -49,7 +49,7 @@ public class BackwardChaining extends SolveMethod
         //checks if the solution has been found
         if (given.get(currentSymbol))
         {
-            return path;
+            return true;
         }
         
         ArrayList<ArrayList<String>> premises = GetPremises(currentSymbol, KB);
@@ -58,7 +58,7 @@ public class BackwardChaining extends SolveMethod
         {
             solution.clear();
             solution.addLast(path.getLast());
-            return null;
+            return false;
         }
 
 
@@ -74,24 +74,18 @@ public class BackwardChaining extends SolveMethod
                 }
                 newpath.addFirst(premiseSymbol);
                 
-                if(BC_AND_OR(KB, premiseSymbol, newpath) == null)
+                if(!BC_AND_OR(KB, newpath))
                 {
                     allTrue = false;
                 }
             }
-            if(allTrue)
-            {
-                for(String premiseSymbol: premise)
-                {
-                    path.addFirst(premiseSymbol);
-                }
+            return allTrue;
 
-                return path;
-            }
 
         }
 
-        return null;
+        //Returns false if none of the paths lead to known given facts.
+        return false;
     }
     
     //returns the premises/bodies that must be true in order for a symbol to also be true.

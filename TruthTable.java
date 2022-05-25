@@ -5,8 +5,7 @@ public class TruthTable extends SolveMethod
 {
     TruthTable()
     {
-        name = "TT";
-        
+        name = "TT";   
     }
 
     private int modelsQueryTrue = 0;
