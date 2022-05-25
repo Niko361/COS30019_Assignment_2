@@ -19,10 +19,7 @@ public class iengine
 		
 		Problem inputProblem = readProblemFile(fileName);
 
-
-
 		SolveMethod thisMethod = null;
-
 		
 		//determine which method the user wants to use to solve the puzzles
 		for(SolveMethod method : solveMethods)
@@ -46,8 +43,6 @@ public class iengine
 		String solution = thisMethod.Solve(inputProblem);
 
 		System.out.println(solution);
-
-
 	}
 
 	public static void InitSolveMethods()
@@ -109,5 +104,4 @@ public class iengine
 		}
 		return null;
 	}
-
 }

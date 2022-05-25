@@ -76,7 +76,6 @@ public class TruthTable extends SolveMethod
         copy.put(key, value);
 
         return copy;
-
     }
 
     //needs to be implemented
