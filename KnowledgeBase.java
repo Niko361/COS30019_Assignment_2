@@ -50,10 +50,8 @@ public class KnowledgeBase
                         symbols.add(symbol);
                     }
                 }
-            }
-            
+            }    
         }
-
     }
 }
 

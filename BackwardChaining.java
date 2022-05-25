@@ -80,8 +80,6 @@ public class BackwardChaining extends SolveMethod
                 }
             }
             return allTrue;
-
-
         }
 
         //Returns false if none of the paths lead to known given facts.
@@ -110,7 +108,6 @@ public class BackwardChaining extends SolveMethod
                 }
             }
         }
-
         return results;
     }
 
