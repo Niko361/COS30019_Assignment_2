@@ -78,7 +78,6 @@ public class TruthTable extends SolveMethod
         return copy;
     }
 
-    //needs to be implemented
     private Boolean PLTrue(KnowledgeBase KB, HashMap<String, Boolean> model)
     {
         //result starts off being assumed to be true, until it either proven false, or returned.

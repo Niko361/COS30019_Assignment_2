@@ -9,7 +9,7 @@
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}",
-            "args": "BC test_HornKB.txt",
+            "args": "TT Test_files/test6.txt",
         },
         {
             "type": "java",
