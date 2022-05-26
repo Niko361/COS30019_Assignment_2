@@ -84,7 +84,24 @@ public class iengine
 
 			String fourthLine = buffReader.readLine();
 			
+			boolean askMatchesKnownSymbols = false;
+			for(String s :problem.knowledgeBase.symbols)
+			{
+				if (s.compareTo(fourthLine)==0)
+				{
+					askMatchesKnownSymbols = true;
+				}
+			}
+
+			if (!askMatchesKnownSymbols)
+			{
+				System.out.println("Symbol being queried is not contained in this knowledge base.");
+				System.exit(1);
+			}
+
+
 			problem.query = fourthLine;
+
 
 
 			buffReader.close();

@@ -19,13 +19,13 @@ public class TruthTable extends SolveMethod
         }
         else
         {
-            return "No";
+            return "No " + modelsQueryTrue;
         }
     }
 
     private Boolean TTCheckAll(KnowledgeBase KB, String alpha, ArrayList<String> symbols, HashMap<String, Boolean> model)
     {
-    
+            
         if(symbols.isEmpty())
         {
             if(PLTrue(KB, model))

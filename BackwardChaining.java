@@ -44,6 +44,16 @@ public class BackwardChaining extends SolveMethod
     private Boolean BC_AND_OR(ArrayList<String> KB, LinkedList<String> path)
     {
         String currentSymbol = path.getFirst();
+
+        //loop detector, could otherwise enter an infinite loop
+        for(int i = 1; i < path.size(); i++)
+        {
+            if(path.get(i).compareTo(currentSymbol)==0)
+            {
+                return false;
+            }
+        }
+
         solution.addFirst(currentSymbol);
         
         //checks if the solution has been found
@@ -51,6 +61,8 @@ public class BackwardChaining extends SolveMethod
         {
             return true;
         }
+
+
         
         ArrayList<ArrayList<String>> premises = GetPremises(currentSymbol, KB);
 
@@ -79,7 +91,11 @@ public class BackwardChaining extends SolveMethod
                     allTrue = false;
                 }
             }
-            return allTrue;
+            //returns true if this search tree was true, otherwise it keeps searching through other prepositions.
+            if(allTrue)
+            {
+                return true;
+            }
         }
 
         //Returns false if none of the paths lead to known given facts.

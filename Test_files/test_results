@@ -1,6 +1,20 @@
-1. Yes: 3
-2. Yes: 1
-3. No
-4. Yes: 2
-5. Yes: 1
-6. Yes: 1
+test1. Yes: 3
+test2. Yes: 1
+test3. No
+test4. Yes: 2
+test5. Yes: 1
+test6. Yes: 1
+test7. Yes: 1
+test8. Yes: 3
+test9. Symbol being queried is not contained in this knowledge base.
+test10. Symbol being queried is not contained in this knowledge base.
+test11. No
+test12. Symbol being queried is not contained in this knowledge base.
+t1. Yes: 1
+t2. No
+t3. Yes: 4
+t4. Yes: 9
+t5. Yes: 1
+t52. Yes: 1
+t6. Yes: 1
+t7. Yes: 3
